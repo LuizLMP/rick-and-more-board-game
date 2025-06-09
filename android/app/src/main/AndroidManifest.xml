@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="board_game_rick_morty"
+        android:label="Rick and Morty"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
