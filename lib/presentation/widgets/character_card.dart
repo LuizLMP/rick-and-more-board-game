@@ -6,14 +6,23 @@ class CharacterCard extends StatelessWidget {
   final CharacterEntity character;
   final VoidCallback onTap;
 
-  const CharacterCard({super.key, required this.character, required this.onTap});
+   CharacterCard({
+    super.key,
+    required this.character,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // lembrei que estou usando stateless widget
+    // eu não ia conseguir alterar o estado da minha variável isMorty, então fiz uma verificação direta aqui
+    final isMorty = character.name.toLowerCase().contains('morty');
+
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       clipBehavior: Clip.antiAlias,
+      color: isMorty ? Colors.yellow : Colors.white,
       child: InkWell(
         onTap: onTap,
         child: Column(
@@ -51,8 +60,14 @@ class CharacterCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     character.species,
+                    style: TextStyle(color: Colors.grey[700], fontSize: 14),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    character.status ?? '',
                     style: TextStyle(
-                      color: Colors.grey[700],
                       fontSize: 14,
                     ),
                     maxLines: 1,
@@ -60,7 +75,7 @@ class CharacterCard extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
